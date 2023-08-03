@@ -1,0 +1,38 @@
+{
+    "name": "onlygames/onlygames",
+    "description": "Onlygames news website",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org",
+            "only": [
+                "wpackagist-plugin/*",
+                "wpackagist-theme/*"
+            ]
+        }
+    ],
+    "require": {
+        "wpackagist-plugin/akismet": "dev-trunk",
+        "wpackagist-theme/hueman": "*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Acme": "src/"
+        }
+    },
+    "extra": {
+        "installer-paths": {
+            "../wp-content/plugins/{$name}/": [
+                "type:wordpress-plugin"
+            ],
+            "../wp-content/themes/{$name}/": [
+                "type:wordpress-themes"
+            ]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true
+        }
+    }
+}

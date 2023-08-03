@@ -3,7 +3,7 @@
 
 # App
 wp-app/*
-!wp-app/composer.json
+!wp-app/composer.*
 
 # Content
 wp-content/plugins/*
