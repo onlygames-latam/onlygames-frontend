@@ -1,0 +1,13 @@
+*.env*
+!.env.example
+# wp-app/wp-content/themes
+# !wp-app/wp-content/themes/*.php
+# wp-app/wp-content/plugins
+# !wp-app/wp-content/plugins/*.php
+wp-app
+wp-content/plugins
+!wp-content/plugins/*.php
+wp-content/themes
+!wp-content/themes/*.php
+wp-content/languages
+wp-content/upgrade

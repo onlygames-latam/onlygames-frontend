@@ -1,0 +1,86 @@
+version: "3.8"
+services:
+  wordpress:
+    container_name: wordpress
+    image: wordpress:5.6.2
+    restart: always
+    depends_on:
+      - mysql
+    ports:
+      - "8080:80"
+    env_file:
+      - ./.env
+    environment:
+      WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
+      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+      WORDPRESS_TABLE_PREFIX: ${WORDPRESS_TABLE_PREFIX}
+      WORDPRESS_DEBUG: 1
+    volumes:
+      - ./config/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
+      - ./wp-app:/var/www/html
+      - ./wp-content:/var/www/html/wp-content
+      # - ./wp-content/themes:/var/www/html/wp-content/themes
+      # - ./wp-content/plugins:/var/www/html/wp-content/plugins
+    networks:
+      - main
+
+  mysql:
+    container_name: mysql
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    env_file:
+      - ./.env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${WORDPRESS_DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${WORDPRESS_DB_NAME}
+      MYSQL_USER: ${WORDPRESS_DB_USER}
+      MYSQL_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+    volumes:
+      - ./wp-data:/docker-entrypoint-initdb.d
+      - db-data:/var/lib/mysql
+    networks:
+      - main
+
+  wpcli:
+    container_name: wordpress-cli
+    image: wordpress:cli
+    volumes:
+      - ./config/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
+      - ./wp-app:/var/www/html
+    env_file:
+      - ./.env
+    environment:
+      WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
+      WORDPRESS_DB_NAME: ${WORDPRESS_DB_NAME}
+      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_ROOT_PASSWORD}
+    depends_on:
+      - mysql
+      - wordpress
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - mysql
+    env_file:
+      - ./.env
+    environment:
+      # https://docs.phpmyadmin.net/en/latest/setup.html#docker-environment-variables
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: ${WORDPRESS_DB_ROOT_PASSWORD}
+      UPLOAD_LIMIT: 50M
+    ports:
+      - 8090:80
+    links:
+      - mysql:mysql
+
+volumes:
+  db-data:
+
+networks:
+  main:
