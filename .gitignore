@@ -1,13 +1,18 @@
 *.env*
 !.env.example
-# wp-app/wp-content/themes
-# !wp-app/wp-content/themes/*.php
-# wp-app/wp-content/plugins
-# !wp-app/wp-content/plugins/*.php
-wp-app
-wp-content/plugins
+
+# App
+wp-app/*
+!wp-app/composer.json
+
+# Content
+wp-content/plugins/*
 !wp-content/plugins/*.php
-wp-content/themes
+wp-content/themes/*
 !wp-content/themes/*.php
-wp-content/languages
-wp-content/upgrade
+wp-content/languages/*
+wp-content/upgrade/*
+
+# Dependencies
+node_modules/
+vendor/
