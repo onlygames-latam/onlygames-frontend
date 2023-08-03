@@ -1,0 +1,19 @@
+{
+  "name": "onlygames",
+  "version": "0.1.0",
+  "description": "Onlygames news website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmmarmol/onlygames.git"
+  },
+  "author": "Diego Martin Marmol <diegomartinmarmol@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dmmarmol/onlygames/issues"
+  },
+  "homepage": "https://github.com/dmmarmol/onlygames#readme"
+}
