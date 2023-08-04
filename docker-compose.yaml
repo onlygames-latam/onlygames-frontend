@@ -22,9 +22,6 @@ services:
     volumes:
       - ./config/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
       - ./wp-app:/var/www/html
-      - ./wp-content:/var/www/html/wp-content
-      # - ./wp-content/themes:/var/www/html/wp-content/themes
-      # - ./wp-content/plugins:/var/www/html/wp-content/plugins
     networks:
       - main
 

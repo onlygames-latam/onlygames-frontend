@@ -1,6 +1,7 @@
 {
     "name": "onlygames/onlygames",
     "description": "Onlygames news website",
+    "license": "proprietary",
     "repositories": [
         {
             "type": "composer",
@@ -13,7 +14,13 @@
     ],
     "require": {
         "wpackagist-plugin/akismet": "dev-trunk",
-        "wpackagist-theme/hueman": "*"
+        "wpackagist-plugin/attachments": "3.5.9",
+        "wpackagist-plugin/gtranslate": "3.0.3",
+        "wpackagist-plugin/regenerate-thumbnails": "3.1.5",
+        "wpackagist-plugin/google-site-kit": "1.104.0",
+        "wpackagist-plugin/wp-linkedin-auto-publish": "8.1",
+        "wpackagist-plugin/wp-modal-popup-with-cookie-integration": "2.4",
+        "wpackagist-plugin/tomparisde-twitchtv-widget": "3.2.5"
     },
     "autoload": {
         "psr-0": {
@@ -22,10 +29,10 @@
     },
     "extra": {
         "installer-paths": {
-            "../wp-content/plugins/{$name}/": [
+            "wp-content/plugins/{$name}/": [
                 "type:wordpress-plugin"
             ],
-            "../wp-content/themes/{$name}/": [
+            "wp-content/themes/{$name}/": [
                 "type:wordpress-themes"
             ]
         }

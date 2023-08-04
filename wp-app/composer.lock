@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e61b45d1883edd53b028b991b58e1726",
+    "content-hash": "0e01999777bfe30ee8717e4a00effbe1",
     "packages": [
         {
             "name": "composer/installers",
@@ -171,22 +171,130 @@
             "time": "2023-06-21T14:59:30+00:00"
         },
         {
-            "name": "wpackagist-theme/hueman",
-            "version": "3.7.23",
+            "name": "wpackagist-plugin/attachments",
+            "version": "3.5.9",
             "source": {
                 "type": "svn",
-                "url": "https://themes.svn.wordpress.org/hueman/",
-                "reference": "3.7.23"
+                "url": "https://plugins.svn.wordpress.org/attachments/",
+                "reference": "tags/3.5.9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/theme/hueman.3.7.23.zip"
+                "url": "https://downloads.wordpress.org/plugin/attachments.3.5.9.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
             },
-            "type": "wordpress-theme",
-            "homepage": "https://wordpress.org/themes/hueman/"
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/attachments/"
+        },
+        {
+            "name": "wpackagist-plugin/google-site-kit",
+            "version": "1.104.0",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/google-site-kit/",
+                "reference": "tags/1.104.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/google-site-kit.1.104.0.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/google-site-kit/"
+        },
+        {
+            "name": "wpackagist-plugin/gtranslate",
+            "version": "3.0.3",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/gtranslate/",
+                "reference": "tags/3.0.3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/gtranslate.3.0.3.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/gtranslate/"
+        },
+        {
+            "name": "wpackagist-plugin/regenerate-thumbnails",
+            "version": "3.1.5",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/regenerate-thumbnails/",
+                "reference": "tags/3.1.5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/regenerate-thumbnails.3.1.5.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/regenerate-thumbnails/"
+        },
+        {
+            "name": "wpackagist-plugin/tomparisde-twitchtv-widget",
+            "version": "3.2.5",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/tomparisde-twitchtv-widget/",
+                "reference": "tags/3.2.5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/tomparisde-twitchtv-widget.3.2.5.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/tomparisde-twitchtv-widget/"
+        },
+        {
+            "name": "wpackagist-plugin/wp-linkedin-auto-publish",
+            "version": "8.1",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/wp-linkedin-auto-publish/",
+                "reference": "tags/8.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/wp-linkedin-auto-publish.8.1.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/wp-linkedin-auto-publish/"
+        },
+        {
+            "name": "wpackagist-plugin/wp-modal-popup-with-cookie-integration",
+            "version": "2.4",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/wp-modal-popup-with-cookie-integration/",
+                "reference": "tags/2.4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/wp-modal-popup-with-cookie-integration.2.4.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/wp-modal-popup-with-cookie-integration/"
         }
     ],
     "packages-dev": [],

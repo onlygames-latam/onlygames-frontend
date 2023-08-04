@@ -2,8 +2,22 @@
 !.env.example
 
 # App
-wp-app/*
+wp-app/*.*
 !wp-app/composer.*
+wp-app/wp-admin
+wp-app/wp-includes
+
+# Content
+wp-app/wp-content/languages
+wp-app/wp-content/upgrade
+
+# Plugins
+wp-app/wp-content/plugins/*
+!wp-app/wp-content/plugins/*.php
+
+# Themes
+wp-app/wp-content/themes/*
+!wp-app/wp-content/themes/*.php
 
 # Content
 wp-content/plugins/*
