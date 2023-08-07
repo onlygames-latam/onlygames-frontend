@@ -1,6 +1,6 @@
 {
   "name": "onlygames",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Onlygames news website",
   "main": "index.js",
   "scripts": {
