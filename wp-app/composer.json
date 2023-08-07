@@ -1,5 +1,5 @@
 {
-    "name": "onlygames/onlygames",
+    "name": "onlygames-latam/onlygames-frontend",
     "description": "Onlygames news website",
     "license": "proprietary",
     "repositories": [
@@ -10,6 +10,19 @@
                 "wpackagist-plugin/*",
                 "wpackagist-theme/*"
             ]
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "onlygames-latam/onlygames-themes",
+                "version": "1.0.3",
+                "type": "wordpress-themes",
+                "source": {
+                    "url": "https://github.com/onlygames-latam/onlygames-themes.git",
+                    "type": "git",
+                    "reference": "feat/theme/goodgame"
+                }
+            }
         }
     ],
     "require": {
@@ -20,7 +33,8 @@
         "wpackagist-plugin/google-site-kit": "1.104.0",
         "wpackagist-plugin/wp-linkedin-auto-publish": "8.1",
         "wpackagist-plugin/wp-modal-popup-with-cookie-integration": "2.4",
-        "wpackagist-plugin/tomparisde-twitchtv-widget": "3.2.5"
+        "wpackagist-plugin/tomparisde-twitchtv-widget": "3.2.5",
+        "onlygames-latam/onlygames-themes": "^1.0.3"
     },
     "autoload": {
         "psr-4": {

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0e01999777bfe30ee8717e4a00effbe1",
+    "content-hash": "271951ea9ffc6707df3743906f85d1f4",
     "packages": [
         {
             "name": "composer/installers",
@@ -152,6 +152,16 @@
             "time": "2022-08-20T06:45:11+00:00"
         },
         {
+            "name": "onlygames-latam/onlygames-themes",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/onlygames-latam/onlygames-themes.git",
+                "reference": "feat/theme/goodgame"
+            },
+            "type": "wordpress-themes"
+        },
+        {
             "name": "wpackagist-plugin/akismet",
             "version": "dev-trunk",
             "source": {
@@ -161,14 +171,14 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/akismet.zip?timestamp=1687359570"
+                "url": "https://downloads.wordpress.org/plugin/akismet.zip?timestamp=1691376978"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/akismet/",
-            "time": "2023-06-21T14:59:30+00:00"
+            "time": "2023-08-07T02:56:18+00:00"
         },
         {
             "name": "wpackagist-plugin/attachments",
