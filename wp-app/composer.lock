@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3103c0a75dd9d0d29874a117ba8d01cd",
+    "content-hash": "f1579294e58916c6aac4f7ea163ca091",
     "packages": [
         {
             "name": "composer/installers",
@@ -152,12 +152,22 @@
             "time": "2022-08-20T06:45:11+00:00"
         },
         {
+            "name": "onlygames-latam/onlygames-plugins",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/onlygames-latam/onlygames-plugins.git",
+                "reference": "main"
+            },
+            "type": "wordpress-plugin"
+        },
+        {
             "name": "onlygames-latam/onlygames-themes",
             "version": "1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/onlygames-latam/onlygames-themes.git",
-                "reference": "feat/theme/goodgame"
+                "reference": "main"
             },
             "type": "wordpress-themes"
         },

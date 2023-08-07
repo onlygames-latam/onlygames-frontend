@@ -20,7 +20,20 @@
                 "source": {
                     "url": "https://github.com/onlygames-latam/onlygames-themes.git",
                     "type": "git",
-                    "reference": "feat/theme/goodgame"
+                    "reference": "main"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "onlygames-latam/onlygames-plugins",
+                "version": "1.0.1",
+                "type": "wordpress-plugin",
+                "source": {
+                    "url": "https://github.com/onlygames-latam/onlygames-plugins.git",
+                    "type": "git",
+                    "reference": "main"
                 }
             }
         }
@@ -34,7 +47,8 @@
         "wpackagist-plugin/wp-linkedin-auto-publish": "8.1",
         "wpackagist-plugin/wp-modal-popup-with-cookie-integration": "2.4",
         "wpackagist-plugin/tomparisde-twitchtv-widget": "3.2.5",
-        "onlygames-latam/onlygames-themes": "^1.0.5"
+        "onlygames-latam/onlygames-themes": "^1.0.5",
+        "onlygames-latam/onlygames-plugins": "^1.0.1"
     },
     "autoload": {
         "psr-4": {
@@ -58,21 +72,24 @@
         }
     },
     "scripts": {
-        "pre-install-cmd": [
-            "rm -rf wp-content/themes/goodgame-child"
-        ],
-        "pre-update-cmd": [
-            "rm -rf wp-content/themes/goodgame-child"
-        ],
+        "clear-wp-plugins": "sh scripts/clear-wp-content.sh plugins",
+        "clear-wp-themes": "sh scripts/clear-wp-content.sh themes",
+        "clear-wp-content": "composer clear-wp-plugins && composer clear-wp-themes",
+        "clear-og-themes": "sh scripts/clear-onlygames-content.sh themes",
+        "clear-og-plugins": "sh scripts/clear-onlygames-content.sh plugins",
+        "unpack-themes": "sh scripts/unpack-onlygames.sh themes",
+        "unpack-plugins": "sh scripts/unpack-onlygames.sh plugins",
         "post-install-cmd": [
-            "echo '⌛️ Clearing onlygames-themes directory...'",
-            "cp -r wp-content/themes/onlygames-themes/src/* wp-content/themes",
-            "rm -rf wp-content/themes/onlygames-themes"
+            "composer unpack-themes",
+            "composer unpack-plugins",
+            "composer clear-og-themes",
+            "composer clear-og-plugins"
         ],
         "post-update-cmd": [
-            "echo '⌛️ Clearing onlygames-themes directory...'",
-            "cp -r wp-content/themes/onlygames-themes/src/* wp-content/themes",
-            "rm -rf wp-content/themes/onlygames-themes"
+            "composer unpack-themes",
+            "composer unpack-plugins",
+            "composer clear-og-themes",
+            "composer clear-og-plugins"
         ]
     }
 }
