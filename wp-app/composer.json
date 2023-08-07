@@ -23,8 +23,9 @@
         "wpackagist-plugin/tomparisde-twitchtv-widget": "3.2.5"
     },
     "autoload": {
-        "psr-0": {
-            "Acme": "src/"
+        "psr-4": {
+            "Plugins\\": "wp-app/wp-content/plugins/",
+            "Themes\\": "wp-app/wp-content/themes/"
         }
     },
     "extra": {
