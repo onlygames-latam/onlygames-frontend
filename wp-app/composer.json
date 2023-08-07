@@ -81,15 +81,11 @@
         "unpack-plugins": "sh scripts/unpack-onlygames.sh plugins",
         "post-install-cmd": [
             "composer unpack-themes",
-            "composer unpack-plugins",
-            "composer clear-og-themes",
-            "composer clear-og-plugins"
+            "composer unpack-plugins"
         ],
         "post-update-cmd": [
             "composer unpack-themes",
-            "composer unpack-plugins",
-            "composer clear-og-themes",
-            "composer clear-og-plugins"
+            "composer unpack-plugins"
         ]
     }
 }
