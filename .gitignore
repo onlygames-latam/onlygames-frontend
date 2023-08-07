@@ -10,6 +10,7 @@ wp-app/wp-includes
 # Content
 wp-app/wp-content/languages
 wp-app/wp-content/upgrade
+wp-app/wp-content/uploads
 
 # Plugins
 wp-app/wp-content/plugins/*

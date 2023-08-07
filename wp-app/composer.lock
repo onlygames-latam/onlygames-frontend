@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "271951ea9ffc6707df3743906f85d1f4",
+    "content-hash": "3103c0a75dd9d0d29874a117ba8d01cd",
     "packages": [
         {
             "name": "composer/installers",
@@ -153,7 +153,7 @@
         },
         {
             "name": "onlygames-latam/onlygames-themes",
-            "version": "1.0.3",
+            "version": "1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/onlygames-latam/onlygames-themes.git",

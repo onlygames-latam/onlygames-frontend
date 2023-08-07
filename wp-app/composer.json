@@ -15,7 +15,7 @@
             "type": "package",
             "package": {
                 "name": "onlygames-latam/onlygames-themes",
-                "version": "1.0.3",
+                "version": "1.0.5",
                 "type": "wordpress-themes",
                 "source": {
                     "url": "https://github.com/onlygames-latam/onlygames-themes.git",
@@ -34,7 +34,7 @@
         "wpackagist-plugin/wp-linkedin-auto-publish": "8.1",
         "wpackagist-plugin/wp-modal-popup-with-cookie-integration": "2.4",
         "wpackagist-plugin/tomparisde-twitchtv-widget": "3.2.5",
-        "onlygames-latam/onlygames-themes": "^1.0.3"
+        "onlygames-latam/onlygames-themes": "^1.0.5"
     },
     "autoload": {
         "psr-4": {
@@ -56,5 +56,23 @@
         "allow-plugins": {
             "composer/installers": true
         }
+    },
+    "scripts": {
+        "pre-install-cmd": [
+            "rm -rf wp-content/themes/goodgame-child"
+        ],
+        "pre-update-cmd": [
+            "rm -rf wp-content/themes/goodgame-child"
+        ],
+        "post-install-cmd": [
+            "echo '⌛️ Clearing onlygames-themes directory...'",
+            "cp -r wp-content/themes/onlygames-themes/src/* wp-content/themes",
+            "rm -rf wp-content/themes/onlygames-themes"
+        ],
+        "post-update-cmd": [
+            "echo '⌛️ Clearing onlygames-themes directory...'",
+            "cp -r wp-content/themes/onlygames-themes/src/* wp-content/themes",
+            "rm -rf wp-content/themes/onlygames-themes"
+        ]
     }
 }
