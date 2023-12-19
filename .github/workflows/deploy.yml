@@ -17,11 +17,19 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
+    - name: Create Directory on Ubuntu Server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.DEV_SERVER_IP }}
+        username: ${{ secrets.DEV_SERVER_USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          mkdir -p /var/www/onlygames-frontend
+
     - name: Copy Repository Files
       run: |
-        mkdir /var/www/onlygames-frontend
-        rsync -a --exclude='node_modules/' $GITHUB_WORKSPACE/{docker-compose.yml,package.json,wordpress.Dockerfile} /var/www
-
+        rsync -a --exclude='node_modules/' $GITHUB_WORKSPACE/{docker-compose.yml,package.json,wordpress.Dockerfile,composer.json,composer.lock,wp-app} /var/www/onlygames-frontend
+        
     - name: Create .env file
       run: |
         echo "WORDPRESS_PORT=${{ secrets.WORDPRESS_PORT }}" > /var/www/onlygames-frontend/.env
