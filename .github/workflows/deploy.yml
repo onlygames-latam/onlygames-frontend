@@ -5,10 +5,7 @@ on:
     branches:
       - development
   workflow_dispatch:
-    inputs:
-        target-branch:
-          description: 'Target branch for deployment'
-          required: false
+  
 jobs:
   deploy:
     runs-on: ubuntu-latest
