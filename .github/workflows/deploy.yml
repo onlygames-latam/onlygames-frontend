@@ -32,15 +32,15 @@ jobs:
         
     - name: Create .env file
       run: |
-        echo "WORDPRESS_PORT=${{ secrets.WORDPRESS_PORT }}" > /var/www/onlygames-frontend/.env
-        echo "MYSQL_PORT=${{ secrets.MYSQL_PORT }}" >> /var/www/onlygames-frontend/.env
-        echo "PHPMYADMIN_PORT=${{ secrets.PHPMYADMIN_PORT }}" >> /var/www/onlygames-frontend/.env
-        echo "WORDPRESS_DB_HOST=${{ secrets.WORDPRESS_DB_HOST }}" >> /var/www/onlygames-frontend/.env
-        echo "WORDPRESS_DB_USER=${{ secrets.WORDPRESS_DB_USER }}" >> /var/www/onlygames-frontend/.env
-        echo "WORDPRESS_DB_PASSWORD=${{ secrets.WORDPRESS_DB_PASSWORD }}" >> /var/www/onlygames-frontend/.env
-        echo "WORDPRESS_DB_NAME=${{ secrets.WORDPRESS_DB_NAME }}" >> /var/www/onlygames-frontend/.env
-        echo "WORDPRESS_DB_ROOT_PASSWORD=${{ secrets.WORDPRESS_DB_ROOT_PASSWORD }}" >> /var/www/onlygames-frontend/.env
-        echo "WORDPRESS_TABLE_PREFIX=${{ secrets.WORDPRESS_TABLE_PREFIX }}" >> /var/www/onlygames-frontend/.env
+        echo "WORDPRESS_PORT=${{ secrets.DEV_WORDPRESS_PORT }}" > /var/www/onlygames-frontend/.env
+        echo "MYSQL_PORT=${{ secrets.DEV_MYSQL_PORT }}" >> /var/www/onlygames-frontend/.env
+        echo "PHPMYADMIN_PORT=${{ secrets.DEV_PHPMYADMIN_PORT }}" >> /var/www/onlygames-frontend/.env
+        echo "WORDPRESS_DB_HOST=${{ secrets.DEV_WORDPRESS_DB_HOST }}" >> /var/www/onlygames-frontend/.env
+        echo "WORDPRESS_DB_USER=${{ secrets.DEV_WORDPRESS_DB_USER }}" >> /var/www/onlygames-frontend/.env
+        echo "WORDPRESS_DB_PASSWORD=${{ secrets.DEV_WORDPRESS_DB_PASSWORD }}" >> /var/www/onlygames-frontend/.env
+        echo "WORDPRESS_DB_NAME=${{ secrets.DEV_WORDPRESS_DB_NAME }}" >> /var/www/onlygames-frontend/.env
+        echo "WORDPRESS_DB_ROOT_PASSWORD=${{ secrets.DEV_WORDPRESS_DB_ROOT_PASSWORD }}" >> /var/www/onlygames-frontend/.env
+        echo "WORDPRESS_TABLE_PREFIX=${{ secrets.DEV_WORDPRESS_TABLE_PREFIX }}" >> /var/www/onlygames-frontend/.env
 
     - name: Build and Push Docker Image
       run: |
