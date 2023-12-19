@@ -17,6 +17,23 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v2
 
+    - name: Copy Repository Files
+      run: |
+        mkdir /var/www/onlygames-frontend
+        rsync -a --exclude='node_modules/' $GITHUB_WORKSPACE/{docker-compose.yml,package.json,wordpress.Dockerfile} /var/www
+
+    - name: Create .env file
+      run: |
+        echo "WORDPRESS_PORT=${{ secrets.WORDPRESS_PORT }}" > /var/www/onlygames-frontend/.env
+        echo "MYSQL_PORT=${{ secrets.MYSQL_PORT }}" >> /var/www/onlygames-frontend/.env
+        echo "PHPMYADMIN_PORT=${{ secrets.PHPMYADMIN_PORT }}" >> /var/www/onlygames-frontend/.env
+        echo "WORDPRESS_DB_HOST=${{ secrets.WORDPRESS_DB_HOST }}" >> /var/www/onlygames-frontend/.env
+        echo "WORDPRESS_DB_USER=${{ secrets.WORDPRESS_DB_USER }}" >> /var/www/onlygames-frontend/.env
+        echo "WORDPRESS_DB_PASSWORD=${{ secrets.WORDPRESS_DB_PASSWORD }}" >> /var/www/onlygames-frontend/.env
+        echo "WORDPRESS_DB_NAME=${{ secrets.WORDPRESS_DB_NAME }}" >> /var/www/onlygames-frontend/.env
+        echo "WORDPRESS_DB_ROOT_PASSWORD=${{ secrets.WORDPRESS_DB_ROOT_PASSWORD }}" >> /var/www/onlygames-frontend/.env
+        echo "WORDPRESS_TABLE_PREFIX=${{ secrets.WORDPRESS_TABLE_PREFIX }}" >> /var/www/onlygames-frontend/.env
+
     - name: Build and Push Docker Image
       run: |
         echo -e "${{ secrets.SSH_PRIVATE_KEY }}" > deploy_key
@@ -24,7 +41,6 @@ jobs:
         eval $(ssh-agent -s)
         ssh-add deploy_key
         docker-compose build
-        docker-compose push
 
     - name: SSH into Ubuntu Server and Deploy
       uses: appleboy/ssh-action@master
@@ -33,6 +49,18 @@ jobs:
         username: ${{ secrets.DEV_SERVER_USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
-          docker-compose pull
-          docker-compose down
-          docker-compose up -d
+          cd /var/www/onlygames-frontend
+          if ! docker-compose pull; then
+            echo "Error pulling Docker images"
+            exit 1
+          fi
+
+          if ! docker-compose down; then
+            echo "Error stopping existing containers"
+            exit 1
+          fi
+
+          if ! docker-compose up -d; then
+            echo "Error starting Docker containers"
+            exit 1
+          fi
