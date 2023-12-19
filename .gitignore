@@ -31,3 +31,6 @@ wp-content/upgrade/*
 # Dependencies
 node_modules/
 vendor/
+
+.keys/*
+!.keys/*.key.pub

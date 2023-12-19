@@ -47,6 +47,7 @@
         "wpackagist-plugin/wp-linkedin-auto-publish": "8.1",
         "wpackagist-plugin/wp-modal-popup-with-cookie-integration": "2.4",
         "wpackagist-plugin/tomparisde-twitchtv-widget": "3.2.5",
+        "wpackagist-plugin/performance-lab": "2.6.1",
         "onlygames-latam/onlygames-themes": "^1.0.5",
         "onlygames-latam/onlygames-plugins": "^1.0.1"
     },

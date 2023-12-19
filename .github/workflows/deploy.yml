@@ -1,0 +1,35 @@
+name: Deploy to Ubuntu Server
+
+on:
+  push:
+    branches:
+      - development
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Build and Push Docker Image
+      run: |
+        echo ${{ secrets.SSH_PRIVATE_KEY }} > deploy_key
+        chmod 600 deploy_key
+        eval $(ssh-agent -s)
+        ssh-add deploy_key
+        docker-compose build
+        docker-compose push
+
+    - name: SSH into Ubuntu Server and Deploy
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.DEV_SERVER_IP }}
+        username: ${{ secrets.DEV_SERVER_USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          docker-compose pull
+          docker-compose down
+          docker-compose up -d
