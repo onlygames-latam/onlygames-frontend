@@ -1,0 +1,110 @@
+name: Deploy to Ubuntu Server
+
+on:
+  push:
+    branches:
+      - development
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+         
+    - name: Create .env file
+      run: |
+        echo "WORDPRESS_PORT=${{ secrets.DEV_WORDPRESS_PORT }}" > .env
+        echo "MYSQL_PORT=${{ secrets.DEV_MYSQL_PORT }}" >> .env
+        echo "PHPMYADMIN_PORT=${{ secrets.DEV_PHPMYADMIN_PORT }}" >> .env
+        echo "WORDPRESS_DB_HOST=${{ secrets.DEV_WORDPRESS_DB_HOST }}" >> .env
+        echo "WORDPRESS_DB_USER=${{ secrets.DEV_WORDPRESS_DB_USER }}" >> .env
+        echo "WORDPRESS_DB_PASSWORD=${{ secrets.DEV_WORDPRESS_DB_PASSWORD }}" >> .env
+        echo "WORDPRESS_DB_NAME=${{ secrets.DEV_WORDPRESS_DB_NAME }}" >> .env
+        echo "WORDPRESS_DB_ROOT_PASSWORD=${{ secrets.DEV_WORDPRESS_DB_ROOT_PASSWORD }}" >> .env
+        echo "WORDPRESS_TABLE_PREFIX=${{ secrets.DEV_WORDPRESS_TABLE_PREFIX }}" >> .env
+
+    # - name: Create Directory on Ubuntu Server & Copy Repository Files
+    #   uses: appleboy/ssh-action@v1.0.0
+    #   with:
+    #     host: ${{ secrets.DEV_SERVER_IP }}
+    #     username: ${{ secrets.DEV_SERVER_USERNAME }}
+    #     password: ${{ secrets.DEV_SERVER_USER_PASSWORD }}
+    #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+    #     debug: true
+    #     script: |
+    #       whoami
+    #       echo ${{ secrets.DEV_SERVER_USER_PASSWORD }} | sudo -S mkdir -p /var/www/${{ github.event.repository.name }}
+    #       rsync -a --exclude='node_modules/' "$GITHUB_WORKSPACE"/{docker-compose.yml,package.json,wordpress.Dockerfile,composer.json,composer.lock,wp-app} /var/www/${{ github.event.repository.name }}
+    #       ls -al /var/www/${{ github.event.repository.name }}
+
+    - name: Create Directory on Ubuntu Server & Copy Repository Files
+      uses: appleboy/scp-action@v0.1.4
+      with:
+        # host: ${{ secrets.DEV_SERVER_IP }}
+        # username: ${{ secrets.DEV_SERVER_USERNAME }}
+        # password: ${{ secrets.DEV_SERVER_USER_PASSWORD }}
+        # port: 22
+        # key: ${{ secrets.SSH_PRIVATE_KEY }}
+        # debug: true
+        # source: "./.env,./docker-compose.yml,./package.json,./wordpress.Dockerfile,./composer.json,./composer.lock,./wp-app"
+        # target: "/var/www/${{ github.event.repository.name }}"
+        # overwrite: true
+        host: ${{ secrets.DEV_SERVER_IP }}
+        username: ${{ secrets.DEV_SERVER_USERNAME }}
+        password: ${{ secrets.DEV_SERVER_USER_PASSWORD }}
+        port: 22
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        debug: true
+        source: "./.env,./docker-compose.yml,./package.json,./wordpress.Dockerfile,./composer.json,./composer.lock,./wp-app"
+        target: "/var/www/${{ github.event.repository.name }}"
+        overwrite: true
+        script: |
+          whoami
+          echo ${{ secrets.DEV_SERVER_USER_PASSWORD }} | sudo -S mkdir -p /var/www/${{ github.event.repository.name }}
+          ls -al /var/www/${{ github.event.repository.name }}
+          tar -zcf /tmp/QAxBhLaUwT.tar.gz ./.env ./docker-compose.yml ./package.json ./wordpress.Dockerfile ./composer.json ./composer.lock ./wp-app
+          ls -al /tmp
+          sudo tar -zxf /tmp/QAxBhLaUwT.tar.gz -C /var/www/${{ github.event.repository.name }}
+          ls -al /var/www/${{ github.event.repository.name }}
+
+    - name: SSH into Ubuntu Server and Deploy
+      uses: appleboy/ssh-action@v0.1.5
+      with:
+        host: ${{ secrets.DEV_SERVER_IP }}
+        username: ${{ secrets.DEV_SERVER_USERNAME }}
+        password: ${{ secrets.DEV_SERVER_USER_PASSWORD }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        debug: true
+        port: 22
+        script: |
+          cd /var/www/${{ github.event.repository.name }}
+          if ! docker compose -f ./docker-compose.yml pull; then
+            echo "Error pulling Docker images"
+            exit 1
+          fi
+
+          if ! docker compose -f ./docker-compose.yml build; then
+            echo "Error building existing containers"
+            exit 1
+          fi
+
+          if ! docker compose -f ./docker-compose.yml down; then
+            echo "Error stopping existing containers"
+            exit 1
+          fi
+
+          if ! docker compose -f ./docker-compose.yml up -d; then
+            echo "Error starting Docker containers"
+            exit 1
+          fi
+  
+    # - name: Build and Push Docker Image
+    #   run: |
+    #     echo -e "${{ secrets.SSH_PRIVATE_KEY }}" > deploy_key
+    #     chmod 600 deploy_key
+    #     eval $(ssh-agent -s)
+    #     ssh-add deploy_key
+    #     docker-compose build
