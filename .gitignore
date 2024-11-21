@@ -1,3 +1,6 @@
+*.keys/*
+!*.keys/*.pub
+.DS_Store
 *.env*
 !.env.example
 
