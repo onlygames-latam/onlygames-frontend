@@ -7,13 +7,21 @@ This repo holds a dockerized version of the [onlygames.com.ar](https://onlygames
 - `composer.php``
 - `docker@^20`
 - `nodejs` (optional)
+- [`onlygames-plugins` repository](https://github.com/onlygames-latam/onlygames-plugins)
+- [`onlygames-themes` repository](https://github.com/onlygames-latam/onlygames-themes)
 
 ## Installation
 
-1. Clone this repository and `cd onlygames-docker/wp-app`
-2. Run `composer install`
-3. `cd ../`
-4. Run `docker-compose up`
+### Install Dependencies
+- Clone the Plugins repository: `cd onlygames-plugins` and run `npm i`
+- Clone the Themes repository: `cd onlygames-themes` and run `npm i`
+
+### Run Wordpress App
+
+- Clone this repository and `cd onlygames-docker`
+- Run `npm i` (this will run `composer install` from the `/wp-app` directory)
+- Rename `.env.example` into `.env.`
+- Finally, run `docker-compose up -d` and go to `https://localhost:8080`
 
 > Plugins & Themes will be automatically download and copied inside `./wp-app/wp-content/`
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 remove_onlygames_content() {
-    local dir_path="wp-content/$1/onlygames-plugins"
+    local dir_path="wp-content/$1/onlygames-$1"
 
     if [ -d "$dir_path" ]; then
         echo "✅ Removing directory: $dir_path"
