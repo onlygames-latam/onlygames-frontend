@@ -2,7 +2,7 @@
 
 unpack_onlygames() {
     source_dir="wp-content/$1/onlygames-$1/src/*"
-    target_dir="wp-content/$1"
+    target_dir="wp-app/wp-content/$1"
 
     echo "⌛️ Clearing onlygames-$1 directory..."
     cp -r $source_dir $target_dir

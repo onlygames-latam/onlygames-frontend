@@ -72,20 +72,30 @@
         }
     },
     "scripts": {
-        "clear-wp-plugins": "sh scripts/clear-wp-content.sh plugins",
-        "clear-wp-themes": "sh scripts/clear-wp-content.sh themes",
+        "clear-wp-plugins": "bash wp-app/scripts/clear-wp-content.sh plugins",
+        "clear-wp-themes": "bash wp-app/scripts/clear-wp-content.sh themes",
         "clear-wp-content": "composer clear-wp-plugins && composer clear-wp-themes",
-        "clear-og-themes": "sh scripts/clear-onlygames-content.sh themes",
-        "clear-og-plugins": "sh scripts/clear-onlygames-content.sh plugins",
-        "unpack-themes": "sh scripts/unpack-onlygames.sh themes",
-        "unpack-plugins": "sh scripts/unpack-onlygames.sh plugins",
+        "clear-og-themes": "bash wp-app/scripts/clear-onlygames-content.sh themes",
+        "clear-og-plugins": "bash wp-app/scripts/clear-onlygames-content.sh plugins",
+        "unpack-themes": "bash wp-app/scripts/unpack-onlygames.sh themes",
+        "unpack-plugins": "bash wp-app/scripts/unpack-onlygames.sh plugins",
         "post-install-cmd": [
             "composer unpack-themes",
-            "composer unpack-plugins"
+            "composer unpack-plugins",
+            "composer clear-wp-themes",
+            "composer clear-wp-plugins",
+            "composer clear-og-themes",
+            "composer clear-og-plugins",
+            "rm -rf ./wp-content"
         ],
         "post-update-cmd": [
             "composer unpack-themes",
-            "composer unpack-plugins"
+            "composer unpack-plugins",
+            "composer clear-wp-themes",
+            "composer clear-wp-plugins",
+            "composer clear-og-themes",
+            "composer clear-og-plugins",
+            "rm -rf ./wp-content"
         ]
     }
 }

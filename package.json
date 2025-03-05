@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "change-version": "node ./script/change-version.js"
+    "change-version": "node ./script/change-version.js",
+    "prepare": "env COMPOSER=./wp-app/composer.json composer install"
   },
   "repository": {
     "type": "git",
