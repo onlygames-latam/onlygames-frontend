@@ -1,6 +1,7 @@
 version: "3.8"
 services:
   wordpress:
+    image: onlygames-wordpress:${FRONTEND_IMAGE_VERSION}
     container_name: wordpress
     build:
       context: .
