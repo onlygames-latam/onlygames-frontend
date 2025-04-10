@@ -61,6 +61,7 @@
         "clear-wp-themes": "bash wp-app/scripts/clear-wp-content.sh themes",
         "unpack-themes": "bash wp-app/scripts/unpack-onlygames.sh themes",
         "unpack-plugins": "bash wp-app/scripts/unpack-onlygames.sh plugins",
+        "install-onlygames-plugins": "bash wp-app/scripts/install-onlygames-dependencies.sh plugins",
         "pre-install-cmd": [
             "composer clear-wp-themes",
             "composer clear-wp-plugins"
@@ -70,10 +71,12 @@
             "composer clear-wp-plugins"
         ],
         "post-install-cmd": [
+            "composer install-onlygames-plugins",
             "composer unpack-themes",
             "composer unpack-plugins"
         ],
         "post-update-cmd": [
+            "composer install-onlygames-plugins",
             "composer unpack-themes",
             "composer unpack-plugins"
         ]
