@@ -1,14 +1,16 @@
 #!/bin/bash
 
 remove_wp_content() {
-    local dir_path="wp-content/$1"
+    local dir_path="wp-app/wp-content/$1"
     
     if [ -d "$dir_path" ]; then
-        echo "Removing all directories within $dir_path except .php files..."
-        find "$dir_path" -mindepth 1 -maxdepth 1 -type d -exec sh -c 'rm -rf "$1"/*' _ {} \;
+        echo "Removing all directories within $dir_path (keeping .php and other files)..."
+        find "$dir_path" -mindepth 1 -maxdepth 1 -type d -exec rm -rf {} +
     else
         echo "Directory does not exist: $dir_path"
     fi
+
+    echo ""
 }
 
 if [ "$1" = "plugins" ]; then

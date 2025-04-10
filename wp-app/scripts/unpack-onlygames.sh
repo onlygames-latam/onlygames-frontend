@@ -1,13 +1,20 @@
 #!/bin/bash
 
 unpack_onlygames() {
-    source_dir="wp-content/$1/onlygames-$1/src/*"
-    target_dir="wp-app/wp-content/$1"
+    type=$1
+    source_dir="wp-app/wp-content/$type/onlygames-$type/src"
+    target_dir="wp-app/wp-content/$type"
 
-    echo "⌛️ Clearing onlygames-$1 directory..."
-    cp -r $source_dir $target_dir
+    echo "📦 Merging contents of $source_dir into $target_dir..."    
+    cp -r "$source_dir/"* "$target_dir"
+
+    echo "✅ Succesfuly unpacked contents from $source_dir into $target_dir"
+
+    echo "Removing $target_dir/onlygames-$type directory..."
     rm -rf "$target_dir/onlygames-$1"
-    echo "✅ Succesfuly unpacked contents of onlygames-$1/"
+    echo "✅ Removal complete!"
+
+    echo ""
 }
 
 if [ "$1" = "plugins" ]; then

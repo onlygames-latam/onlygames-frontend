@@ -5,8 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "change-version": "node ./script/change-version.js",
-    "prepare": "env COMPOSER=./wp-app/composer.json composer install"
+    "change-version": "node ./scripts/change-version.js",
+    "composer": "composer install",
+    "update": "composer update",
+    "clearcache": "composer clearcache",
+    "refresh": "rm -rf vendor/ ./composer.lock && npm run clearcache && npm run composer",
+    "prepare": "npm run composer"
   },
   "repository": {
     "type": "git",
